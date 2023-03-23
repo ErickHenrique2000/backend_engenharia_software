@@ -15,7 +15,7 @@ const config: { [key: string]: Knex.Config } = {
     },
     migrations: {
       tableName: 'knex_migrations',
-      directory: `${__dirname}/src/Database/migrations`
+      directory: `./src/Database/migrations`
     }
   },
 

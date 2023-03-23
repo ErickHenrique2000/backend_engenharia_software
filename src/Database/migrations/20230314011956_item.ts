@@ -2,8 +2,8 @@ import { Knex } from "knex";
 
 
 export async function up(knex: Knex): Promise<void> {
-    knex.schema.createTable("Item", (table) => {
-        table.increments('id').unique().notNullable().primary();
+    return knex.schema.createTable("Item", (table) => {
+        table.uuid('id').primary().defaultTo(knex.raw('(UUID())'));
         table.text('nome').notNullable();
         table.integer('qtd').notNullable();
         table.integer('qtd_alert_stock');

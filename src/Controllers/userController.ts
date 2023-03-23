@@ -27,7 +27,6 @@ export async function login(req: Request, res: Response){
         if(!username || !password) return res.status(404).send();
 
         const retorno = await getPassword(username);
-        console.log(retorno);
 
         if(!await verifyHash(password, retorno.password)){
             return res.status(401).send({Error: 'Invalid user or password'});
