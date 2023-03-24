@@ -28,7 +28,7 @@ router.post('/api/item', (req, res) => {
     createItem(req as SuperRequest, res)
 })
 
-router.get('/api/items', (req, res) => {
+router.get('/api/itens', (req, res) => {
     listItens(req as SuperRequest, res)
 })
 
