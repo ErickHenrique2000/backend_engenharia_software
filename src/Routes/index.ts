@@ -1,6 +1,6 @@
 import express from 'express';
 import authenticationController from '../Controllers/authenticationController';
-import { createItem } from '../Controllers/itemController';
+import { createItem, deletarItem, listItens, modificarItem } from '../Controllers/itemController';
 import { createUser, login } from '../Controllers/userController';
 import { SuperRequest } from '../Interfaces';
 
@@ -26,6 +26,18 @@ router.get('/api/teste', (req, res) => {
 
 router.post('/api/item', (req, res) => {
     createItem(req as SuperRequest, res)
+})
+
+router.get('/api/items', (req, res) => {
+    listItens(req as SuperRequest, res)
+})
+
+router.put('/api/atualizarItem', (req, res) => {
+    modificarItem(req as SuperRequest, res)
+})
+
+router.delete('/api/deletarItem', (req, res) => {
+    deletarItem(req as SuperRequest, res)
 })
 
 router.post('/user/create', (req, res) => {
