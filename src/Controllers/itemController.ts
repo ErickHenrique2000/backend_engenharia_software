@@ -5,12 +5,12 @@ import { errorMessage } from "../Logger";
 
 export async function createItem(req: SuperRequest, res: Response){
     try{
-        const { nome, qtd, qtd_alert_stock, qtd_alert_stand} = req.body;
+        const { nome, qtd, qtd_alert_stock, qtd_alert_stand, qtd_stand} = req.body;
         if(!nome || !qtd || qtd < 0 || String(nome).trim() == ''){
             return res.status(400).send();
         }
 
-        await createItemDatabase({nome, qtd, qtd_alert_stock, qtd_alert_stand});
+        await createItemDatabase({nome, qtd, qtd_alert_stock, qtd_alert_stand, qtd_stand});
         return res.status(201).send();
     }catch(err){
         errorMessage(err);
@@ -31,13 +31,13 @@ export async function listItens(req: SuperRequest, res: Response){
 
 export async function modificarItem(req: SuperRequest, res: Response){
     try{
-        const { nome, qtd, qtd_alert_stock, qtd_alert_stand, id } = req.body;
+        const { nome, qtd, qtd_alert_stock, qtd_alert_stand, id, qtd_stand } = req.body;
 
         if(!nome || !qtd || qtd < 0 || String(nome).trim() == '' || !id || String(id).trim() == ''){
             return res.status(400).send();
         }
 
-        await modificarItemDatabase({id, nome, qtd, qtd_alert_stock, qtd_alert_stand});
+        await modificarItemDatabase({id, nome, qtd, qtd_alert_stock, qtd_alert_stand, qtd_stand});
         return res.status(201).send();
     }catch(err){
         errorMessage(err);

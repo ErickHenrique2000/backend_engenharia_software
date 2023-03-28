@@ -5,6 +5,7 @@ export interface User{
     name: string;
     password: string;
     username: string;
+    cargo: string;
 }
 
 export interface Item{
@@ -13,6 +14,7 @@ export interface Item{
     qtd: number
     qtd_alert_stock?: number
     qtd_alert_stand?: number
+    qtd_stand: number
 }
 
 export interface SuperRequest extends Request{

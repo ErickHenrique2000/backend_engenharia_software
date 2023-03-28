@@ -6,12 +6,12 @@ import { createAccessToken } from "./tokenController";
 
 export async function createUser(req: Request, res: Response){
     try{
-        const {username, name, password} = req.body;
+        const {username, name, password, cargo} = req.body;
         if(!username || !name || !password) return res.status(404).send();
 
         const hashedPassword = await hashPassword(password);
 
-        const retorno = await createUserDatabase({name, username, password: hashedPassword});
+        const retorno = await createUserDatabase({name, username, password: hashedPassword, cargo});
     
         return res.status(202).send(retorno);
 

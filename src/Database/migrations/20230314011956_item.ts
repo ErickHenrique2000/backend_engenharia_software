@@ -6,6 +6,7 @@ export async function up(knex: Knex): Promise<void> {
         table.uuid('id').primary().defaultTo(knex.raw('(UUID())'));
         table.text('nome').notNullable();
         table.integer('qtd').notNullable();
+        table.integer('qtd_stand').notNullable();
         table.integer('qtd_alert_stock');
         table.integer('qtd_alert_stand');
     })
