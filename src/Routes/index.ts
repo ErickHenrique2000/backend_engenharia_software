@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     console.log('Olá mundo!');
-    return res.status(202).send();
+    return res.status(202).send({message: 'Tudo certo'});
 })
 
 router.all('/api/*', async (req, res, next) => {
@@ -45,6 +45,7 @@ router.post('/user/create', (req, res) => {
 })
 
 router.post('/user/login', (req, res) => {
+    console.log(req.body)
     login(req, res);
 })
 

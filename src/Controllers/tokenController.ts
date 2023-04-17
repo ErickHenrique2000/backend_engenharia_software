@@ -3,8 +3,8 @@ import Environments from '../Environments'
 
 const SECRET = String(Environments.TokenSecret)
 
-export async function createAccessToken(userId: string): Promise<string> {
-    const token = jwt.sign({userId}, SECRET, {expiresIn: '12h'})
+export async function createAccessToken(userId: string, cargo: string): Promise<string> {
+    const token = jwt.sign({userId, cargo}, SECRET, {expiresIn: '12h'})
     return token
 }
 

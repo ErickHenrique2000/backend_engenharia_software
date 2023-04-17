@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createUserDatabase, getPassword } from "../Database/userDatabase";
+import { createUserDatabase, getPasswordAndRole } from "../Database/userDatabase";
 import { errorMessage } from "../Logger";
 import { hashPassword, verifyHash } from "../Utils";
 import { createAccessToken } from "./tokenController";
@@ -26,13 +26,13 @@ export async function login(req: Request, res: Response){
         const {username, password} = req.body;
         if(!username || !password) return res.status(404).send();
 
-        const retorno = await getPassword(username);
+        const retorno = await getPasswordAndRole(username);
 
         if(!await verifyHash(password, retorno.password)){
             return res.status(401).send({Error: 'Invalid user or password'});
         }
 
-        const token = await createAccessToken(retorno.id)
+        const token = await createAccessToken(retorno.id, retorno.cargo)
     
         return res.status(202).send({token});
     }catch(err){
